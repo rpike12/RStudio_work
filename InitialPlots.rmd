@@ -1,0 +1,44 @@
+
+
+```{r}
+pointProjections2019 <- read.csv(file.choose())
+actualPoints2019 <-read.csv(file.choose())
+```
+
+```{r}
+projectionsDF2019 <- as.data.frame(pointProjections2019)
+actualDF2019 <- as.data.frame(actualPoints2019)
+```
+
+
+```{r}
+#2019 FPTS/G Distribution
+
+differenceVec2019PPG <- c()
+
+for (i in 1:300) {
+  for (j in 1:300) {
+    if (actualDF2019[i,1] == projectionsDF2019[j,1]) {
+      differenceVec2019PPG = c(differenceVec2019PPG, c( actualDF2019[i,13] - projectionsDF2019[j,13]) )
+    }
+  }
+}
+
+hist(differenceVec2019PPG, main = 'Distribution of Difference in FPTS/G: 2019', xlab = 'Actual FPTS/G - Projected FPTS/G')
+```
+
+```{r}
+#2019 Total FPTS Distribution
+
+differenceVec2019TPTS <- c()
+
+for (i in 1:300) {
+  for (j in 1:300) {
+    if (actualDF2019[i,1] == projectionsDF2019[j,1]) {
+      differenceVec2019TPTS = c(differenceVec2019TPTS, c( actualDF2019[i,14] - projectionsDF2019[j,14]) )
+    }
+  }
+}
+
+hist(differenceVec2019TPTS, main = 'Distribution of Difference in Total FPTS: 2019', xlab = 'Actual Total FPTS - Projected Total FPTS' )
+```
